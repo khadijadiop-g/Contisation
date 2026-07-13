@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion — Carnet de Cotisation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../public/assets/css/styles.css">
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-card">
+      <div class="login-mark">CC</div>
+      <h1>Carnet de Cotisation</h1>
+      <p class="login-sub">Connectez-vous à votre espace</p>
+      <div class="field">
+        <label for="li-email">Identifiant</label>
+        <input id="li-email" type="text" placeholder="prenom.nom@promo.sn">
+      </div>
+      <div class="field">
+        <label for="li-pass">Mot de passe</label>
+        <input id="li-pass" type="password" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary">Se connecter</button>
+
+      <div class="role-picks">
+        <p class="rp-label">Aperçu maquette — accéder directement à un espace</p>
+        <a class="role-pick gerant" href="../gerant/dashboard.html">Espace Gérant <span class="arrow">→</span></a>
+        <a class="role-pick coach" href="../coach/dashboard.html">Espace Coach Superviseur <span class="arrow">→</span></a>
+        <a class="role-pick apprenant" href="../apprenant/dashboard.html">Espace Apprenant <span class="arrow">→</span></a>
+      </div>
+
+      <p class="login-foot">Un seul formulaire de connexion pour les trois rôles</p>
+      <p class="login-foot" style="margin-top:8px;">
+        Nouvel apprenant ? <a href="inscription.html" style="color:var(--green);font-weight:600;text-decoration:underline;">S'inscrire à la promotion →</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
