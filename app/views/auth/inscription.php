@@ -6,7 +6,7 @@
 <title>Auto-inscription — Carnet de Cotisation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../public/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/styles.css">
 <style>
   .promo-banner{
     background:var(--white);border:1px solid var(--line);border-radius:8px;
@@ -39,7 +39,7 @@
   <div class="login-shell">
     <div class="login-card">
 
-      <div class="form-view" id="formView">
+      <div class="form-view<?= $succes ? ' hidden' : '' ?>" id="formView">
         <div class="login-mark" style="background:var(--green);">CC</div>
         <h1>Rejoindre la promotion</h1>
         <p class="login-sub">Auto-inscription à la collecte des cotisations</p>
@@ -54,48 +54,55 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="ins-nom">Nom complet</label>
-          <input id="ins-nom" type="text" placeholder="Ex : Khadija Diop">
-        </div>
-        <div class="field">
-          <label for="ins-tel">Téléphone</label>
-          <input id="ins-tel" type="tel" placeholder="+221 77 000 00 00">
-        </div>
-        <div class="field">
-          <label for="ins-mdp">Créer un mot de passe</label>
-          <input id="ins-mdp" type="password" placeholder="••••••••">
-        </div>
+        <?php if (!empty($erreurs)): ?>
+          <div style="margin-bottom:14px;">
+            <?php foreach ($erreurs as $erreur): ?>
+              <p style="color:#c0392b;font-size:12.5px;margin:0 0 4px;"><?= htmlspecialchars($erreur) ?></p>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
 
-        <button class="btn btn-accent" style="width:100%;color:#fff;" onclick="showSuccess()">Je m'inscris</button>
+        <form method="POST" action="/inscription">
+          <div class="field">
+            <label for="ins-nom">Nom complet</label>
+            <input id="ins-nom" name="nom" type="text" placeholder="Ex : Khadija Diop">
+          </div>
+          <div class="field">
+            <label for="ins-email">Email</label>
+            <input id="ins-email" name="email" type="email" placeholder="prenom@gmail.com">
+          </div>
+          <div class="field">
+            <label for="ins-tel">Téléphone</label>
+            <input id="ins-tel" name="tel" type="tel" placeholder="+221 77 000 00 00">
+          </div>
+          <div class="field">
+            <label for="ins-mdp">Créer un mot de passe</label>
+            <input id="ins-mdp" name="mot_de_passe" type="password" placeholder="••••••••">
+          </div>
+
+          <button class="btn btn-accent" style="width:100%;color:#fff;" type="submit">Je m'inscris</button>
+        </form>
         <p class="login-foot">Votre inscription sera visible dans la liste du Gérant</p>
         <p class="login-foot" style="margin-top:8px;">
-          Déjà inscrit ? <a href="login.html" style="color:var(--ink);font-weight:600;text-decoration:underline;">Se connecter →</a>
+          Déjà inscrit ? <a href="/login" style="color:var(--ink);font-weight:600;text-decoration:underline;">Se connecter →</a>
         </p>
       </div>
 
-      <div class="success-view" id="successView">
+      <div class="success-view<?= $succes ? ' active' : '' ?>" id="successView">
         <div class="success-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
         <h1>Inscription enregistrée</h1>
-        <p>Bienvenue Khadija ! Votre profil a été ajouté à la promotion « Formation Web — Sonatel Academy ».</p>
+        <p>Votre profil a été ajouté à la promotion « Formation Web — Sonatel Academy ».</p>
         <ul class="next-steps">
           <li>• Votre cotisation hebdomadaire démarre à la prochaine semaine ouverte</li>
           <li>• Le Gérant peut ajuster ou vérifier vos informations à tout moment</li>
           <li>• Connectez-vous dès maintenant à votre espace personnel</li>
         </ul>
-        <a class="btn btn-primary" style="width:100%;margin-top:18px;" href="../apprenant/dashboard.html">Accéder à mon espace</a>
+        <a class="btn btn-primary" style="width:100%;margin-top:18px;" href="/login">Me connecter</a>
       </div>
 
     </div>
   </div>
-
-<script>
-  function showSuccess(){
-    document.getElementById('formView').classList.add('hidden');
-    document.getElementById('successView').classList.add('active');
-  }
-</script>
 </body>
 </html>
